@@ -41,6 +41,16 @@ function my_theme_archive_title( $title ) {
 # Add custom image size
 add_image_size( 'name_of_image_size', 800, 600, true ); // widthpx x heightpx, hard crop mode
 
+# Register the three useful image sizes for use in Add Media modal
+add_filter( 'image_size_names_choose', 'wpshout_custom_sizes' );
+function wpshout_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        '1440p' => __( '1440p' ),
+        '1800p' => __( '1800p' ),
+        '4k' => __( '4k' ),
+    ) );
+}
+
 # Remove "Category" from archives
 function prefix_category_title( $title ) {
     if ( is_category() ) {
